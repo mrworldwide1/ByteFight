@@ -24,6 +24,8 @@ title_font_size = 72
 title_font = pygame.font.Font('Retro Gaming.ttf', title_font_size)
 button_font_size = 36
 button_font = pygame.font.Font('Retro Gaming.ttf', button_font_size)
+tiny_font_size = 18
+tiny_font = pygame.font.Font('Retro Gaming.ttf', tiny_font_size)
 
 # questions
 computer_science_questions = []
@@ -57,8 +59,12 @@ def title_screen():
     play_soundtrack("xDeviruchi - Title Theme .wav")
 
     while True:
+        # title and bg
         display_background('title_screen_bg.jpg')
         display_text(game_name, title_font, screen_width/2, screen_height/6, 'white')
+
+        # copyright
+        display_text("By: Lucas L, Omar S, Harris V", tiny_font, screen_width/2, screen_height/1.1, 'white')
 
         # menu choices
         computer_science_button = Button("Computer Science", button_font, screen_width/14, screen_height/2.5, "brown", "white", 420, 50)
