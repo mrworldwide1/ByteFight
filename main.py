@@ -77,6 +77,9 @@ def title_screen():
         if computer_science_button.clicked():
             stop_soundtrack()            
             computer_science_arena()
+        elif quit_button.clicked():
+            pygame.quit()
+            sys.exit()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
