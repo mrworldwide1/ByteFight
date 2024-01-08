@@ -8,12 +8,15 @@ from button import Button
 
 ## Setup ##
 
+# other variables so nothing is hardcoded
+game_name = "ByteFight"
+
 # setup display
 pygame.init()
 screen_width = 640
 screen_height = 480
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("Prodigy")
+pygame.display.set_caption(game_name)
 clock = pygame.time.Clock()
 
 # get fonts
@@ -22,11 +25,7 @@ title_font = pygame.font.Font('Retro Gaming.ttf', title_font_size)
 button_font_size = 36
 button_font = pygame.font.Font('Retro Gaming.ttf', button_font_size)
 
-# other variables so nothing is hardcoded
-game_name = "Prodigy"
-
 # questions
-math_questions = []
 computer_science_questions = []
 
 # custom function that quickly puts text onto screen surface
@@ -69,16 +68,10 @@ def title_screen():
         computer_science_button.display()
         science_button.display()
 
-        # switch game states based on buttons pressed
-        if math_button.clicked():
-            stop_soundtrack()
-            math_arena()
-        elif computer_science_button.clicked():
+        # menu buttons to change
+        if computer_science_button.clicked():
             stop_soundtrack()            
             computer_science_arena()
-        elif science_button.clicked():
-            stop_soundtrack()
-            science_arena()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -86,18 +79,6 @@ def title_screen():
                 sys.exit()
 
         # update everything
-        pygame.display.update()
-        clock.tick(60)
-
-def math_arena():
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-        display_background('math_arena.jpg')
-
         pygame.display.update()
         clock.tick(60)
 
@@ -112,19 +93,6 @@ def computer_science_arena():
 
         pygame.display.update()
         clock.tick(60)
-
-def science_arena():
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-        display_background('science_arena.png')
-
-        pygame.display.update()
-        clock.tick(60)
-
 
 # actually starts the game
 title_screen()
