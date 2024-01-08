@@ -61,12 +61,8 @@ def title_screen():
         display_text(game_name, title_font, screen_width/2, screen_height/6, 'white')
 
         # menu choices
-        math_button = Button("Math", button_font, screen_width/14, screen_height/2.5, "brown", "white", 125, 50)
         computer_science_button = Button("Computer Science", button_font, screen_width/14, screen_height/1.8, "brown", "white", 420, 50)
-        science_button = Button("Science", button_font, screen_width/14, screen_height/1.4, "brown", "white", 190, 50)
-        math_button.display()
         computer_science_button.display()
-        science_button.display()
 
         # menu buttons to change
         if computer_science_button.clicked():
