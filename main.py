@@ -72,19 +72,24 @@ def title_screen():
         computer_science_button.display()
         quit_button.display()
 
-
         # menu buttons to change
-        if computer_science_button.clicked():
-            stop_soundtrack()            
-            computer_science_arena()
-        elif quit_button.clicked():
-            pygame.quit()
-            sys.exit()
+        # if computer_science_button.clicked():
+        #     stop_soundtrack()            
+        #     computer_science_arena()
+        # elif quit_button.clicked():
+        #     pygame.quit()
+        #     sys.exit()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            elif event.type == pygame.MOUSEBUTTONUP:
+                if computer_science_button.collide():
+                    computer_science_arena()
+                elif quit_button.collide():
+                    pygame.quit()
+                    sys.exit()
 
         # update everything
         pygame.display.update()

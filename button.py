@@ -28,13 +28,10 @@ class Button():
         pygame.draw.rect(screen, self.button_colour, self.rectangle)
         screen.blit(self.text_surface, self.text_rect)
 
-    # return whether mouse touching and clicked, also stops player from holding it down
-    def clicked(self):
+    # return whether mouse touching
+    def collide(self):
         mouse_pos = pygame.mouse.get_pos()
-        if self.rectangle.collidepoint(mouse_pos) and pygame.mouse.get_pressed()[0]:
-            if self.locked == False:
-                self.locked = True
-                return True
+        if self.rectangle.collidepoint(mouse_pos):
+            return True
         else:
-            self.locked = False
             return False
