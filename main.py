@@ -137,7 +137,10 @@ def computer_science_arena():
       clock.tick(60)
 
 def title_screen():
-  while True:
+
+    play_soundtrack("xDeviruchi - Title Theme .wav")
+
+    while True:
       # Title and Background
       display_background('title_screen_bg.jpg')
       display_text(game_name, title_font, screen_width/2, screen_height/6, 'white')
