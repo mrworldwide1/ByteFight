@@ -22,6 +22,8 @@ screen_width = 640
 screen_height = 480
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption(game_name)
+programIcon = pygame.image.load('battle_arena.png').convert_alpha() # load icon image as a Surface then change icon
+pygame.display.set_icon(programIcon)
 clock = pygame.time.Clock()
 
 # get fonts
