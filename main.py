@@ -69,7 +69,8 @@ def computer_science_arena():
     asked_questions = []
 
     # play music
-
+    stop_soundtrack()
+    play_soundtrack()
 
     while True:
         display_background('battle_arena.png')  # Displays battle arena
@@ -104,7 +105,7 @@ def computer_science_arena():
 
                     question = question_data["question"]
                     options = question_data["options"]
-                    answer = input(f"{question} ({', '.join(options)}): ")
+                    answer = input(f"{question} ({', '.join(options)}: ")
                      
                     if answer.upper() == question_data["answer"]:
                         enemy_health -= random.randint(10, 20) # Attacks enemy if correct answer 
@@ -122,7 +123,7 @@ def computer_science_arena():
                     question_data = random.choice(computer_science_questions)
                     question = question_data["question"]
                     options = question_data["options"]
-                    answer = input(f"{question} ({', '.join(options)}): ")
+                    answer = input(f"{question} ({', '.join(options)}: ")
 
                     if answer.upper() == question_data["answer"]:
                         player_health += random.randint(5, 10)
