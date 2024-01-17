@@ -69,7 +69,7 @@ def computer_science_arena():
     # Sets enemy and player health points 
     player_health = 100 
     enemy_health = 100
-    asked_questions = [random]
+    asked_questions = []
 
     # play music
     stop_soundtrack()
