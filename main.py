@@ -117,7 +117,7 @@ def computer_science_arena():
                     question = question_data["question"]
                     options = question_data["options"]
                     answer = input(f"{question} ({', '.join(options)}): ")
-                    
+
                     if answer.upper() == question_data["answer"]:
                         player_health += random.randint(5, 10)
                         player_health = min(100, player_health)
@@ -141,7 +141,8 @@ def computer_science_arena():
             pygame.display.update()
             time.sleep(2)
             return
-  
+
+        # Updates everything
         pygame.display.update()
         clock.tick(60)
 
@@ -162,6 +163,7 @@ def title_screen():
           if event.type == pygame.QUIT:
               pygame.quit()
               sys.exit()
+        # switch game state if buttons clicked 
           elif event.type == pygame.MOUSEBUTTONUP:
               if computer_science_button.collide():
                   computer_science_arena()
