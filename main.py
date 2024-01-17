@@ -157,7 +157,7 @@ def computer_science_arena():
         clock.tick(60)
 
 def title_screen():
-  # play soundtrack
+  # play music
   stop_soundtrack()
   play_soundtrack("xDeviruchi - Title Theme .wav")
 
