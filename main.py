@@ -52,6 +52,16 @@ def display_background(image):
     bg = pygame.transform.scale(bg, (screen_width, screen_height))
     screen.blit(bg, (0, 0))
 
+# custom function to play soundtracks
+def play_soundtrack(file):
+    pygame.mixer.music.load(file)
+    pygame.mixer.music.play(-1, 0, 4000)
+
+# custom function that fades out whatevers currently playing
+def stop_soundtrack():
+    pygame.mixer.music.fadeout(1000)
+
+
 def computer_science_arena():
     # Sets enemy and player health points 
     player_health = 100 
@@ -85,7 +95,8 @@ def computer_science_arena():
                         question_data = random.choice(computer_science_questions)
                         if question_data["question"] not in asked_questions:
                             asked_questions.append(question_data["question"])  # Ensures the same question is not asked twice
-                            break  
+                            break
+
                     question = question_data["question"]
                     options = question_data["options"]
                     answer = input(f"{question} ({', '.join(options)}): ")
@@ -106,6 +117,7 @@ def computer_science_arena():
                     question = question_data["question"]
                     options = question_data["options"]
                     answer = input(f"{question} ({', '.join(options)}): ")
+                    
                     if answer.upper() == question_data["answer"]:
                         player_health += random.randint(5, 10)
                         player_health = min(100, player_health)
