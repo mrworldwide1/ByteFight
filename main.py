@@ -68,6 +68,8 @@ def computer_science_arena():
     enemy_health = 100
     asked_questions = []
 
+    # play music
+
 
     while True:
         display_background('battle_arena.png')  # Displays battle arena
@@ -91,6 +93,8 @@ def computer_science_arena():
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONUP:
+
+                # ask questions when fight clicked
                 if fight_button.collide():
                     while True: 
                         question_data = random.choice(computer_science_questions)
@@ -113,6 +117,7 @@ def computer_science_arena():
                         else:
                             print("Enemy lands hit! You missed!") # Displays message if enemy lands hit 
                           
+                # ask questions if heal clicked
                 elif heal_button.collide():
                     question_data = random.choice(computer_science_questions)
                     question = question_data["question"]
