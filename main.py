@@ -40,6 +40,9 @@ character_font = pygame.font.Font('Retro Gaming.ttf', character_font_size)
 health_bar_colour_one = (255, 0, 0)
 health_bar_colour_two = (0, 255, 0)
 
+# Music that may play in battle - each time player clicks play, pick a random song
+battleSoundtracks = ["xDeviruchi - Decisive Battle.wav", "xDeviruchi - And The Journey Begins .wav", "xDeviruchi - The Icy Cave .wav"]
+
 # Displays text onto screen surface
 def display_text(text, font, x, y, colour):
     text_surface = font.render(text, True, colour)
@@ -66,11 +69,11 @@ def computer_science_arena():
     # Sets enemy and player health points 
     player_health = 100 
     enemy_health = 100
-    asked_questions = []
+    asked_questions = [random]
 
     # play music
     stop_soundtrack()
-    play_soundtrack()
+    play_soundtrack(random.choice(battleSoundtracks))
 
     while True:
         display_background('battle_arena.png')  # Displays battle arena
@@ -155,6 +158,7 @@ def computer_science_arena():
 
 def title_screen():
   # play soundtrack
+  stop_soundtrack()
   play_soundtrack("xDeviruchi - Title Theme .wav")
 
   while True:
