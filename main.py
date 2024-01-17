@@ -68,6 +68,7 @@ def computer_science_arena():
     enemy_health = 100
     asked_questions = []
 
+
     while True:
         display_background('battle_arena.png')  # Displays battle arena
       
@@ -147,6 +148,9 @@ def computer_science_arena():
         clock.tick(60)
 
 def title_screen():
+  # play soundtrack
+  play_soundtrack("xDeviruchi - Title Theme .wav")
+
   while True:
       # Title and Background
       display_background('title_screen_bg.jpg')
