@@ -1,5 +1,5 @@
 # Name: ByteFight
-# Description: ICS4U SDLC summative project, a game inspired by Math prodigy.
+# Description: ICS4U SDLC summative project, a fun educational computer science game inspired by Math prodigy.
 # Date: November 28, 2023
 # By: Omar S, Lucas L, Harris V
 # some features like soundtrack dont work on replit - check the github
@@ -13,10 +13,10 @@ from cs_questions import computer_science_questions
 
 ## Setup ##
 
-# other variables so nothing is hardcoded
+# Other variables so fewer values are hardcoded
 game_name = "ByteFight"
 
-# setup display
+# Setup display
 pygame.init()
 screen_width = 640
 screen_height = 480
@@ -26,7 +26,7 @@ programIcon = pygame.image.load('battle_arena.png').convert_alpha() # load icon 
 pygame.display.set_icon(programIcon)
 clock = pygame.time.Clock()
 
-# get fonts
+# Get fonts
 title_font_size = 72
 title_font = pygame.font.Font('Retro Gaming.ttf', title_font_size)
 button_font_size = 36
@@ -41,7 +41,7 @@ health_bar_colour_one = (255, 0, 0)
 health_bar_colour_two = (0, 255, 0)
 
 # Music that may play in battle - each time player clicks play, pick a random song
-battleSoundtracks = ["xDeviruchi - Decisive Battle.wav", "xDeviruchi - And The Journey Begins .wav", "xDeviruchi - The Icy Cave .wav"]
+battleSoundtracks = ["xDeviruchi - Decisive Battle.wav", "xDeviruchi - And The Journey Begins .wav", "xDeviruchi - The Icy Cave .wav", ""]
 
 # Displays text onto screen surface
 def display_text(text, font, x, y, colour):
@@ -55,26 +55,29 @@ def display_background(image):
     bg = pygame.transform.scale(bg, (screen_width, screen_height))
     screen.blit(bg, (0, 0))
 
-# custom function to play soundtracks
+# Custom function to play soundtracks
 def play_soundtrack(file):
     pygame.mixer.music.load(file)
     pygame.mixer.music.play(-1, 0, 4000)
 
-# custom function that fades out whatevers currently playing
+# Custom function that fades out whatevers currently playing
 def stop_soundtrack():
     pygame.mixer.music.fadeout(1000)
 
 
+## Different game states as functions
+
 def title_screen():
-  # play music
+  
+  # Stop current song, play music
   stop_soundtrack()
   play_soundtrack("xDeviruchi - Title Theme .wav")
 
   while True:
-      # Title and Background
+      # Show title and background
       display_background('title_screen_bg.jpg')
       display_text(game_name, title_font, screen_width/2, screen_height/6, 'white')
-      display_text("By: Lucas L, Omar S, Harris V", tiny_font, screen_width/2, screen_height/1.1, 'white') # Name rights
+      display_text("By: Lucas L, Omar S, Harris V \n ICS4U", tiny_font, screen_width/2, screen_height/1.1, 'white')
       
     # Menu choices
       computer_science_button = Button("Play", button_font, screen_width/14, screen_height/2.5, "green", "white", 120, 50)
@@ -82,11 +85,12 @@ def title_screen():
       computer_science_button.display()
       quit_button.display()
 
+      # Pygame event queue
       for event in pygame.event.get():
           if event.type == pygame.QUIT:
               pygame.quit()
               sys.exit()
-        # switch game state if buttons clicked 
+        # Switch game state if buttons clicked 
           elif event.type == pygame.MOUSEBUTTONUP:
               if computer_science_button.collide():
                   computer_science_arena()
@@ -105,12 +109,13 @@ def computer_science_arena():
     enemy_health = 100
     asked_questions = []
 
-    # play music
+    # Stop current song, play music
     stop_soundtrack()
     play_soundtrack(random.choice(battleSoundtracks))
 
     while True:
-        display_background('battle_arena.png')  # Displays battle arena
+        # show background
+        display_background('battle_arena.png')
       
         # Displays health bars
         pygame.draw.rect(screen, health_bar_colour_two, (20, 20, player_health * 2.2, 30))
@@ -131,7 +136,6 @@ def computer_science_arena():
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONUP:
-
                 # ask questions when fight clicked
                 if fight_button.collide():
                     while True: 
@@ -139,23 +143,25 @@ def computer_science_arena():
                         if question_data["question"] not in asked_questions:
                             asked_questions.append(question_data["question"])  # Ensures the same question is not asked twice
                             break
-
                     question = question_data["question"]
                     options = question_data["options"]
                     answer = input(f"{question} ({', '.join(options)}: ")
                      
+                    # Attacks enemy if correct answer 
                     if answer.upper() == question_data["answer"]:
-                        enemy_health -= random.randint(10, 20) # Attacks enemy if correct answer 
+                        enemy_health -= random.randint(10, 20)
                         print("You attacked!")
+                    # otherwise damage player
                     else:
-                        damage = random.randint(10, 20) # Damages player if incorrect answer
+                        damage = random.randint(10, 20)
                         player_health -= damage
+                        # display message if crit
                         if damage > 15: 
-                            print("Enemy lands crit! You missed!") # Displays message if enemy lands critical hit
+                            print("Enemy lands crit! You missed!") 
                         else:
-                            print("Enemy lands hit! You missed!") # Displays message if enemy lands hit 
+                            print("Enemy lands hit! You missed!")
                           
-                # ask questions if heal clicked
+                # Ask questions if heal clicked
                 elif heal_button.collide():
                     question_data = random.choice(computer_science_questions)
                     question = question_data["question"]
@@ -169,6 +175,7 @@ def computer_science_arena():
                     else:
                         damage = random.randint(15, 60)
                         player_health -= damage
+                        
                         if damage > 20:
                             print("You missed!") 
                         else:
