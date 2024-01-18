@@ -1,3 +1,6 @@
+# questions stored in dictionary
+# list > each item is dictionary > "options" key in dict has value of list
+
 computer_science_questions = [
     {
         "question": "What does OOP stand for in programming?\n",
