@@ -41,7 +41,7 @@ health_bar_colour_enemy = ("purple")
 health_bar_colour_player = (0, 255, 0)
 
 # Music that may play in battle - randomly choen each battle
-battleSoundtracks = ["xDeviruchi - Decisive Battle.wav", "xDeviruchi - And The Journey Begins .wav", "xDeviruchi - The Icy Cave .wav", ""]
+battleSoundtracks = ["xDeviruchi - Decisive Battle.wav", "xDeviruchi - And The Journey Begins .wav", "xDeviruchi - The Icy Cave .wav", "xDeviruchi - Exploring The Unknown.wav"]
 
 # Enemy/player names
 player_name = "Wizard"
