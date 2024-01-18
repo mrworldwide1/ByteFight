@@ -158,5 +158,15 @@ computer_science_questions = [
             " (D) V-Model"
         ],
         "answer": "C"
+    },
+        {
+        "question": "What does IDE stand for?\n",
+        "options": [
+            "A) Idle Development Environment\n"
+            " (B) Integrated Development Environment\n"
+            " (C) Intelligent Development Environment\n"
+            " (D) None of the above"
+        ],
+        "answer": "C"
     }
 ]
