@@ -139,7 +139,6 @@ def computer_science_arena():
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONUP:
-                # ask question when fight clicked
                 if fight_button.collide():
                     # Ensures the same question is not asked twice
                     while True:
@@ -147,6 +146,7 @@ def computer_science_arena():
                         if question_data["question"] not in asked_questions:
                             asked_questions.append(question_data["question"])  
                             break
+                        
                     question = question_data["question"]
                     options = question_data["options"]
                     answer = input(f"{question} ({', '.join(options)}: ")
