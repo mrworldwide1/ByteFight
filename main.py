@@ -47,6 +47,9 @@ battleSoundtracks = ["xDeviruchi - Decisive Battle.wav", "xDeviruchi - And The J
 player_name = "Wizard"
 enemy_name = "Earth Creature"
 
+# store previously asked questions to prevent repeats
+asked_questions = []
+
 # Displays text onto screen surface
 def display_text(text, font, x, y, colour):
     text_surface = font.render(text, True, colour)
@@ -67,6 +70,7 @@ def play_soundtrack(file):
 # Custom function that fades out whatevers currently playing
 def stop_soundtrack():
     pygame.mixer.music.fadeout(1000)
+
 
 
 ## Game States ##
@@ -110,7 +114,6 @@ def computer_science_arena():
     # Sets enemy and player health points 
     player_health = 100 
     enemy_health = 100
-    asked_questions = []
 
     # Stop current song, play music
     stop_soundtrack()
@@ -134,6 +137,7 @@ def computer_science_arena():
         fight_button.display()
         heal_button.display()
   
+        # event queue
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -159,7 +163,6 @@ def computer_science_arena():
                     else:
                         damage = random.randint(10, 20)
                         player_health -= damage
-                        # display message if crit
                         if damage > 15: 
                             print("Enemy lands crit! You missed!") 
                         else:

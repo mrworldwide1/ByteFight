@@ -19,5 +19,5 @@ class Multiple_Choice_Prompt(pygame.sprite.Sprite):
 # pseudocode
 # display four rectangles on screen at specific x and y coords
 # overlay text on those rectangles
-        # text is 
-
+        # text is taken using same code in main.py
+        

@@ -1,6 +1,8 @@
 # Custom class created to make it easier to add buttons in game.
 # because pygame has an obtuse way of handling what is basically layers in photoshop
 
+# Rect objects in pygame store rectangular coordinates
+
 import pygame
 
 # values taken from main.py so that no errors arise
@@ -19,7 +21,6 @@ class Button():
         self.font_colour = font_colour
         self.width = width
         self.height = height
-        self.locked = False
         
         # allign mid-left of text to mid-left of button
         self.rectangle = pygame.Rect(self.x, self.y, self.width, self.height)

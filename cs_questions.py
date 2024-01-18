@@ -170,6 +170,6 @@ computer_science_questions = [
             " (C) Intelligent Development Environment\n"
             " (D) None of the above"
         ],
-        "answer": "C"
+        "answer": "B"
     }
 ]
