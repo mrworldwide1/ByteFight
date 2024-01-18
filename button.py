@@ -3,7 +3,7 @@
 
 import pygame
 
-# values from main.py so that no errors arise
+# values taken from main.py so that no errors arise
 screen_width = 640
 screen_height = 480
 screen = pygame.display.set_mode((screen_width, screen_height))

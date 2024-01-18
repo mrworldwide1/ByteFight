@@ -40,7 +40,7 @@ character_font = pygame.font.Font('Retro Gaming.ttf', character_font_size)
 health_bar_colour_enemy = ("purple")
 health_bar_colour_player = (0, 255, 0)
 
-# Music that may play in battle - randomly choen each battle
+# Music that may play in battle - randomly chosen each battle
 battleSoundtracks = ["xDeviruchi - Decisive Battle.wav", "xDeviruchi - And The Journey Begins .wav", "xDeviruchi - The Icy Cave .wav", "xDeviruchi - Exploring The Unknown.wav"]
 
 # Enemy/player names
@@ -80,7 +80,7 @@ def title_screen():
       # Show title and background
       display_background('title_screen_bg.jpg')
       display_text(game_name, title_font, screen_width/2, screen_height/6, 'white')
-      display_text("By: Lucas L, Omar S, Harris V \n ICS4U", tiny_font, screen_width/2, screen_height/1.1, 'white')
+      display_text("By: Lucas L, Omar S, Harris V\n ICS4U", tiny_font, screen_width/2, screen_height/1.1, 'white')
       
     # Menu choices
       computer_science_button = Button("Play", button_font, screen_width/14, screen_height/2.5, "green", "white", 120, 50)
@@ -140,6 +140,7 @@ def computer_science_arena():
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONUP:
                 if fight_button.collide():
+
                     # Ensures the same question is not asked twice
                     while True:
                         question_data = random.choice(computer_science_questions)
