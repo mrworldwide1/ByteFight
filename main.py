@@ -6,7 +6,6 @@
 
 import pygame
 import sys
-import time
 import random
 from button import Button
 from cs_questions import computer_science_questions
@@ -47,16 +46,13 @@ battleSoundtracks = ["xDeviruchi - Decisive Battle.wav", "xDeviruchi - And The J
 player_name = "Wizard"
 enemy_name = "Earth Creature"
 
-# store previously asked questions to prevent repeats
-asked_questions = []
-
 # Displays text onto screen surface
 def display_text(text, font, x, y, colour):
     text_surface = font.render(text, True, colour)
     text_rect = text_surface.get_rect(center=(x, y))
     screen.blit(text_surface, text_rect)
 
-# Function that fits background image onto entire screen
+# Custom function that fits background image onto entire screen
 def display_background(image):
     bg = pygame.image.load(image).convert_alpha()
     bg = pygame.transform.scale(bg, (screen_width, screen_height))
@@ -70,7 +66,6 @@ def play_soundtrack(file):
 # Custom function that fades out whatevers currently playing
 def stop_soundtrack():
     pygame.mixer.music.fadeout(1000)
-
 
 
 ## Game States ##
@@ -115,6 +110,9 @@ def computer_science_arena():
     player_health = 100 
     enemy_health = 100
 
+    # Store previously asked questions to prevent repeats
+    asked_questions = []
+
     # Stop current song, play music
     stop_soundtrack()
     play_soundtrack(random.choice(battleSoundtracks))
@@ -137,12 +135,13 @@ def computer_science_arena():
         fight_button.display()
         heal_button.display()
   
-        # event queue
+        # Event queue
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONUP:
+                # Ask question when fight clicked
                 if fight_button.collide():
 
                     # Ensures the same question is not asked twice
@@ -154,8 +153,8 @@ def computer_science_arena():
 
                     question = question_data["question"]
                     options = question_data["options"]
-                    answer = input(f"{question} ({', '.join(options)}: ")
-                     
+                    answer = input(f"{question} ({','.join(options)}\n Answer: ")
+
                     # Attack enemy if correct answer, otherwise damage player
                     if answer.upper() == question_data["answer"]:
                         enemy_health -= random.randint(10, 20)
@@ -163,23 +162,32 @@ def computer_science_arena():
                     else:
                         damage = random.randint(10, 20)
                         player_health -= damage
-                        if damage > 15: 
+                        if damage > 15:
                             print("Enemy lands crit! You missed!") 
                         else:
                             print("Enemy lands hit! You missed!")
                           
                 # Ask questions if heal clicked
                 elif heal_button.collide():
-                    question_data = random.choice(computer_science_questions)
+                    # Ensures the same question is not asked twice
+                    while True:
+                        question_data = random.choice(computer_science_questions)
+                        if question_data["question"] not in asked_questions:
+                            asked_questions.append(question_data["question"])  
+                            break
+                        
                     question = question_data["question"]
                     options = question_data["options"]
-                    answer = input(f"{question} ({', '.join(options)}: ")
+                    answer = input(f"{question} ({','.join(options)}\n Answer: ")
 
-                    # Heal player up to max health of 100
+                    # Heal player up to max health of 100 if answer correct
                     if answer.upper() == question_data["answer"]:
                         player_health += random.randint(5, 10)
                         player_health = min(100, player_health)
-                        print("You healed!")
+                        if player_health < 100:
+                            print("You healed!")
+                        if player_health >= 100:
+                            print("You healed and are at max health!")
                     else:
                         damage = random.randint(15, 60)
                         player_health -= damage
@@ -192,12 +200,16 @@ def computer_science_arena():
         if player_health <= 0:
             display_text("Game Over", title_font, screen_width / 2, screen_height / 1.5, 'red')
             pygame.display.update()
-            time.sleep(2)
+            pygame.time.delay(2000)
+            stop_soundtrack()
+            play_soundtrack("xDeviruchi - Title Theme .wav")
             return
         elif enemy_health <= 0:
             display_text("You Win!", title_font, screen_width / 2, screen_height / 2, 'green')
             pygame.display.update()
-            time.sleep(2)
+            pygame.time.delay(2000)
+            stop_soundtrack()
+            play_soundtrack("xDeviruchi - Title Theme .wav")
             return
 
         # Updates everything
