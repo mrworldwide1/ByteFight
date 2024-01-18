@@ -146,16 +146,15 @@ def computer_science_arena():
                         if question_data["question"] not in asked_questions:
                             asked_questions.append(question_data["question"])  
                             break
-                        
+
                     question = question_data["question"]
                     options = question_data["options"]
                     answer = input(f"{question} ({', '.join(options)}: ")
                      
-                    # Attack enemy if correct answer 
+                    # Attack enemy if correct answer, otherwise damage player
                     if answer.upper() == question_data["answer"]:
                         enemy_health -= random.randint(10, 20)
                         print("You attacked!")
-                    # otherwise damage player
                     else:
                         damage = random.randint(10, 20)
                         player_health -= damage
