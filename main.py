@@ -74,6 +74,8 @@ def play_soundtrack(file):
 def stop_soundtrack():
     pygame.mixer.music.fadeout(1000)
 
+# Tell player to keep console open
+print("Please don't close this console, you'll need it to answer the questions!")
 
 ## Game States ##
 
