@@ -37,15 +37,15 @@ character_font_size = 14
 character_font = pygame.font.Font('Retro Gaming.ttf', character_font_size)
 
 # Health bar RGB colors
-health_bar_colour_one = (255, 0, 0)
-health_bar_colour_two = (0, 255, 0)
+health_bar_colour_enemy = ("purple")
+health_bar_colour_player = (0, 255, 0)
 
 # Music that may play in battle - randomly choen each battle
 battleSoundtracks = ["xDeviruchi - Decisive Battle.wav", "xDeviruchi - And The Journey Begins .wav", "xDeviruchi - The Icy Cave .wav", ""]
 
-# Monster/player names
+# Enemy/player names
 player_name = "Wizard"
-monster_name = "Earth Creature"
+enemy_name = "Earth Creature"
 
 # Displays text onto screen surface
 def display_text(text, font, x, y, colour):
@@ -121,12 +121,12 @@ def computer_science_arena():
         display_background('battle_arena.png')
       
         # Displays health bars
-        pygame.draw.rect(screen, health_bar_colour_two, (20, 20, player_health * 2.2, 30))
-        pygame.draw.rect(screen, health_bar_colour_one, (400, 20, enemy_health * 2.2, 30))
+        pygame.draw.rect(screen, health_bar_colour_player, (20, 20, player_health * 2.2, 30))
+        pygame.draw.rect(screen, health_bar_colour_enemy, (400, 20, enemy_health * 2.2, 30))
       
         # Displays player and enemy names 
         display_text(player_name, character_font, 50, 10, 'white')
-        display_text(monster_name, character_font, 465, 10, 'white')
+        display_text(enemy_name, character_font, 465, 10, 'white')
       
         # Displays fight and heal buttons
         fight_button = Button("Fight", button_font, screen_width / 12, screen_height - 100, "brown", "white", 120, 50)
