@@ -46,6 +46,13 @@ battleSoundtracks = ["xDeviruchi - Decisive Battle.wav", "xDeviruchi - And The J
 player_name = "Wizard"
 enemy_name = "Earth Creature"
 
+# Retrieve save data file with wins/losses, put each line in list
+save_file = open("save.txt", "r+")
+lines = save_file.readlines()
+wins = lines[1]
+losses = lines[4]
+save_file.close()
+
 # Displays text onto screen surface
 def display_text(text, font, x, y, colour):
     text_surface = font.render(text, True, colour)
@@ -76,11 +83,13 @@ def title_screen():
   play_soundtrack("xDeviruchi - Title Theme .wav")
 
   while True:
-      # Show title and background
+      # Show title, background, score
       display_background('title_screen_bg.jpg')
       display_text(game_name, title_font, screen_width/2, screen_height/6, 'white')
-      display_text("By: Lucas L, Omar S, Harris V\n ICS4U", tiny_font, screen_width/2, screen_height/1.1, 'white')
-      
+      display_text("By: Lucas L, Omar S, Harris V - for ICS4U", tiny_font, screen_width/2, screen_height/1.08, 'white')
+      display_text(f"Wins: {wins}", tiny_font, screen_width/2, screen_height/1.25, 'white')
+      display_text(f"Losses: {losses}", tiny_font, screen_width/2, screen_height/1.18, 'white')
+
     # Menu choices
       computer_science_button = Button("Play", button_font, screen_width/14, screen_height/2.5, "green", "white", 120, 50)
       quit_button = Button("Quit", button_font, screen_width/14, screen_height/1.8, "red", "white", 120, 50)
@@ -175,7 +184,7 @@ def computer_science_arena():
                         if question_data["question"] not in asked_questions:
                             asked_questions.append(question_data["question"])  
                             break
-                        
+
                     question = question_data["question"]
                     options = question_data["options"]
                     answer = input(f"{question} ({','.join(options)}\n Answer: ")
@@ -196,18 +205,40 @@ def computer_science_arena():
                         else:
                             print("Enemy lands Hit! You missed!") 
                           
-        # Displays game over or victory screen
+        # Game over or victory screen
         if player_health <= 0:
             display_text("Game Over", title_font, screen_width / 2, screen_height / 1.5, 'red')
             pygame.display.update()
             pygame.time.delay(2000)
+
+            # Update save returning list containing each line as an element in read/write mode
+            # save_file = open("save.txt", "r+")
+            # lines = save_file.readlines()
+            # losses += 1
+            # lines[4] = losses
+            # # update specific line
+            # save_file.writelines(lines)
+            # save_file.close()
+
             stop_soundtrack()
             play_soundtrack("xDeviruchi - Title Theme .wav")
             return
+        
         elif enemy_health <= 0:
             display_text("You Win!", title_font, screen_width / 2, screen_height / 2, 'green')
             pygame.display.update()
             pygame.time.delay(2000)
+
+            # Update save returning list containing each line as an element in read/write mode
+            # return list containing each line as an element in read/write mode
+            # save_file = open("save.txt", "r+")
+            # lines = save_file.readlines()
+            # wins += 1
+            # lines[1] = losses
+            # # update specific line
+            # save_file.writelines(lines)
+            # save_file.close()
+
             stop_soundtrack()
             play_soundtrack("xDeviruchi - Title Theme .wav")
             return
