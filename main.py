@@ -65,10 +65,9 @@ def stop_soundtrack():
     pygame.mixer.music.fadeout(1000)
 
 
-## Different game states as functions
+## Game States ##
 
 def title_screen():
-  
   # Stop current song, play music
   stop_soundtrack()
   play_soundtrack("xDeviruchi - Title Theme .wav")
