@@ -65,6 +65,40 @@ def stop_soundtrack():
     pygame.mixer.music.fadeout(1000)
 
 
+def title_screen():
+  # play music
+  stop_soundtrack()
+  play_soundtrack("xDeviruchi - Title Theme .wav")
+
+  while True:
+      # Title and Background
+      display_background('title_screen_bg.jpg')
+      display_text(game_name, title_font, screen_width/2, screen_height/6, 'white')
+      display_text("By: Lucas L, Omar S, Harris V", tiny_font, screen_width/2, screen_height/1.1, 'white') # Name rights
+      
+    # Menu choices
+      computer_science_button = Button("Play", button_font, screen_width/14, screen_height/2.5, "green", "white", 120, 50)
+      quit_button = Button("Quit", button_font, screen_width/14, screen_height/1.8, "red", "white", 120, 50)
+      computer_science_button.display()
+      quit_button.display()
+
+      for event in pygame.event.get():
+          if event.type == pygame.QUIT:
+              pygame.quit()
+              sys.exit()
+        # switch game state if buttons clicked 
+          elif event.type == pygame.MOUSEBUTTONUP:
+              if computer_science_button.collide():
+                  computer_science_arena()
+              elif quit_button.collide():
+                  pygame.quit()
+                  sys.exit()
+
+      # Updates everything
+      pygame.display.update()
+      clock.tick(60)
+
+
 def computer_science_arena():
     # Sets enemy and player health points 
     player_health = 100 
@@ -155,39 +189,6 @@ def computer_science_arena():
         # Updates everything
         pygame.display.update()
         clock.tick(60)
-
-def title_screen():
-  # play music
-  stop_soundtrack()
-  play_soundtrack("xDeviruchi - Title Theme .wav")
-
-  while True:
-      # Title and Background
-      display_background('title_screen_bg.jpg')
-      display_text(game_name, title_font, screen_width/2, screen_height/6, 'white')
-      display_text("By: Lucas L, Omar S, Harris V", tiny_font, screen_width/2, screen_height/1.1, 'white') # Name rights
-      
-    # Menu choices
-      computer_science_button = Button("Play", button_font, screen_width/14, screen_height/2.5, "green", "white", 120, 50)
-      quit_button = Button("Quit", button_font, screen_width/14, screen_height/1.8, "red", "white", 120, 50)
-      computer_science_button.display()
-      quit_button.display()
-
-      for event in pygame.event.get():
-          if event.type == pygame.QUIT:
-              pygame.quit()
-              sys.exit()
-        # switch game state if buttons clicked 
-          elif event.type == pygame.MOUSEBUTTONUP:
-              if computer_science_button.collide():
-                  computer_science_arena()
-              elif quit_button.collide():
-                  pygame.quit()
-                  sys.exit()
-
-      # Updates everything
-      pygame.display.update()
-      clock.tick(60)
 
 # Starts game 
 title_screen()
