@@ -1,10 +1,13 @@
+# Custom class created to make it easier to add buttons in game.
+# because pygame has an obtuse way of handling what is basically layers in photoshop
+
 import pygame
 
+# values from main.py so that no errors arise
 screen_width = 640
 screen_height = 480
 screen = pygame.display.set_mode((screen_width, screen_height))
 
-# menu button
 class Button():
     def __init__(self, text, font, x, y, button_colour, font_colour, width, height):
         super().__init__()

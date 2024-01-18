@@ -36,11 +36,11 @@ tiny_font = pygame.font.Font('Retro Gaming.ttf', tiny_font_size)
 character_font_size = 14 
 character_font = pygame.font.Font('Retro Gaming.ttf', character_font_size)
 
-# Health bar variables
+# Health bar RGB colors
 health_bar_colour_one = (255, 0, 0)
 health_bar_colour_two = (0, 255, 0)
 
-# Music that may play in battle - each time player clicks play, pick a random song
+# Music that may play in battle - randomly choen each battle
 battleSoundtracks = ["xDeviruchi - Decisive Battle.wav", "xDeviruchi - And The Journey Begins .wav", "xDeviruchi - The Icy Cave .wav", ""]
 
 # Displays text onto screen surface
@@ -136,18 +136,19 @@ def computer_science_arena():
                 pygame.quit()
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONUP:
-                # ask questions when fight clicked
+                # ask question when fight clicked
                 if fight_button.collide():
-                    while True: 
+                    # Ensures the same question is not asked twice
+                    while True:
                         question_data = random.choice(computer_science_questions)
                         if question_data["question"] not in asked_questions:
-                            asked_questions.append(question_data["question"])  # Ensures the same question is not asked twice
+                            asked_questions.append(question_data["question"])  
                             break
                     question = question_data["question"]
                     options = question_data["options"]
                     answer = input(f"{question} ({', '.join(options)}: ")
                      
-                    # Attacks enemy if correct answer 
+                    # Attack enemy if correct answer 
                     if answer.upper() == question_data["answer"]:
                         enemy_health -= random.randint(10, 20)
                         print("You attacked!")
@@ -168,6 +169,7 @@ def computer_science_arena():
                     options = question_data["options"]
                     answer = input(f"{question} ({', '.join(options)}: ")
 
+                    # Heal player up to max health of 100
                     if answer.upper() == question_data["answer"]:
                         player_health += random.randint(5, 10)
                         player_health = min(100, player_health)
@@ -175,11 +177,10 @@ def computer_science_arena():
                     else:
                         damage = random.randint(15, 60)
                         player_health -= damage
-                        
                         if damage > 20:
                             print("You missed!") 
                         else:
-                            print("Enemy Lands Hit! You missed! ") 
+                            print("Enemy lands Hit! You missed!") 
                           
         # Displays game over or victory screen
         if player_health <= 0:
