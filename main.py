@@ -197,7 +197,7 @@ def computer_science_arena():
                         player_health = min(100, player_health)
                         if player_health < 100:
                             print("You healed!")
-                        if player_health >= 100:
+                        elif player_health >= 100:
                             print("You healed and are at max health!")
                     else:
                         damage = random.randint(15, 60)
