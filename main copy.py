@@ -3,11 +3,8 @@
 # Date: November 28, 2023
 # By: Omar S, Lucas L, Harris V
 # some features like soundtrack dont work on replit - check the github
-# Name: ByteFight
-# Description: ICS4U SDLC summative project, a game inspired by Math prodigy.
-# Date: November 28, 2023
-# By: Omar S, Lucas L, Harris V
-# Some features like the soundtrack may not work on Replit - check the GitHub
+
+# Version that has the game itself as the class
 
 import pygame
 import sys
