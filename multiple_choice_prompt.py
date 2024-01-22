@@ -20,4 +20,4 @@ class Multiple_Choice_Prompt(pygame.sprite.Sprite):
 # display four rectangles on screen at specific x and y coords
 # overlay text on those rectangles
         # text is taken using same code in main.py
-        
+# detect collision of those rectangles
