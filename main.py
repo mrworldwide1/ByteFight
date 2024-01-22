@@ -129,7 +129,7 @@ def computer_science_arena():
     play_soundtrack(random.choice(battleSoundtracks))
 
     while True:
-        # show background
+        # Show background
         display_background('battle_arena.png')
       
         # Displays health bars
@@ -155,7 +155,7 @@ def computer_science_arena():
                 # Ask question when fight clicked
                 if fight_button.collide():
 
-                    # Ensures the same question is not asked twice
+                    # Ensures same question is not asked twice
                     while True:
                         question_data = random.choice(computer_science_questions)
                         if question_data["question"] not in asked_questions:
@@ -180,7 +180,7 @@ def computer_science_arena():
                           
                 # Ask questions if heal clicked
                 elif heal_button.collide():
-                    # Ensures the same question is not asked twice
+                    # Ensures same question is not asked twice
                     while True:
                         question_data = random.choice(computer_science_questions)
                         if question_data["question"] not in asked_questions:
@@ -191,7 +191,7 @@ def computer_science_arena():
                     options = question_data["options"]
                     answer = input(f"{question} ({','.join(options)}\n Answer: ")
 
-                    # Heal player up to max health of 100 if answer correct
+                    # Heal player up to max health of 100 if answer correct, otherwise harm player
                     if answer.upper() == question_data["answer"]:
                         player_health += random.randint(5, 10)
                         player_health = min(100, player_health)
