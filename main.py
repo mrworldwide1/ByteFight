@@ -80,7 +80,6 @@ print("Please don't close this console, you'll need it to answer the questions!"
 ## Game States ##
 
 def title_screen():
-  # Stop current song, play music
   stop_soundtrack()
   play_soundtrack("xDeviruchi - Title Theme .wav")
 
@@ -124,7 +123,7 @@ def computer_science_arena():
     # Store previously asked questions to prevent repeats
     asked_questions = []
 
-    # Stop current song, play music
+    # Music
     stop_soundtrack()
     play_soundtrack(random.choice(battleSoundtracks))
 
@@ -230,16 +229,6 @@ def computer_science_arena():
             display_text("You Win!", title_font, screen_width / 2, screen_height / 2, 'green')
             pygame.display.update()
             pygame.time.delay(2000)
-
-            # Update save returning list containing each line as an element in read/write mode
-            # return list containing each line as an element in read/write mode
-            # save_file = open("save.txt", "r+")
-            # lines = save_file.readlines()
-            # wins += 1
-            # lines[1] = losses
-            # # update specific line
-            # save_file.writelines(lines)
-            # save_file.close()
 
             stop_soundtrack()
             play_soundtrack("xDeviruchi - Title Theme .wav")
